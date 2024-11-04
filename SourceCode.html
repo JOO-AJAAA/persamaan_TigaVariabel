@@ -1,71 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Persamaan Linear 3 Variabel</title>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <h2>Kalkulator Persamaan Linear 3 Variabel</h2>
     <form id="linearForm">
-        <p>Persamaan 1: ax + by + cz = d</p>
-        <input type="number" id="a" placeholder="a">
-        <input type="number" id="b" placeholder="b">
-        <input type="number" id="c" placeholder="c">
-        <input type="number" id="d" placeholder="d"><br><br>
-        
-        <p>Persamaan 2: ex + fy + gz = h</p>
-        <input type="number" id="e" placeholder="e">
-        <input type="number" id="f" placeholder="f">
-        <input type="number" id="g" placeholder="g">
-        <input type="number" id="h" placeholder="h"><br><br>
-        
-        <p>Persamaan 3: ix + jy + kz = l</p>
-        <input type="number" id="i" placeholder="i">
-        <input type="number" id="j" placeholder="j">
-        <input type="number" id="k" placeholder="k">
-        <input type="number" id="l" placeholder="l"><br><br>
-        
-        <button type="button" onclick="solveEquations()">Hitung</button>
+      <p>Persamaan 1: ax + by + cz = d</p>
+      <input type="number" id="a" placeholder="a" />
+      <input type="number" id="b" placeholder="b" />
+      <input type="number" id="c" placeholder="c" />
+      <input type="number" id="d" placeholder="d" /><br /><br />
+
+      <p>Persamaan 2: ax + by + cz = d</p>
+      <input type="number" id="e" placeholder="a" />
+      <input type="number" id="f" placeholder="b" />
+      <input type="number" id="g" placeholder="c" />
+      <input type="number" id="h" placeholder="d" /><br /><br />
+
+      <p>Persamaan 3: ax + by + cz = d</p>
+      <input type="number" id="i" placeholder="a" />
+      <input type="number" id="j" placeholder="b" />
+      <input type="number" id="k" placeholder="c" />
+      <input type="number" id="l" placeholder="d" /><br /><br />
+
+      <button type="button" onclick="solveEquations()">Hitung</button>
     </form>
 
     <h3>Hasil:</h3>
     <p id="result"></p>
 
     <script>
-        function solveEquations() {
-            const a = parseFloat(document.getElementById("a").value);
-            const b = parseFloat(document.getElementById("b").value);
-            const c = parseFloat(document.getElementById("c").value);
-            const d = parseFloat(document.getElementById("d").value);
-            const e = parseFloat(document.getElementById("e").value);
-            const f = parseFloat(document.getElementById("f").value);
-            const g = parseFloat(document.getElementById("g").value);
-            const h = parseFloat(document.getElementById("h").value);
-            const i = parseFloat(document.getElementById("i").value);
-            const j = parseFloat(document.getElementById("j").value);
-            const k = parseFloat(document.getElementById("k").value);
-            const l = parseFloat(document.getElementById("l").value);
+      function solveEquations() {
+        const a = parseFloat(document.getElementById("a").value);
+        const b = parseFloat(document.getElementById("b").value);
+        const c = parseFloat(document.getElementById("c").value);
+        const d = parseFloat(document.getElementById("d").value);
+        const e = parseFloat(document.getElementById("e").value);
+        const f = parseFloat(document.getElementById("f").value);
+        const g = parseFloat(document.getElementById("g").value);
+        const h = parseFloat(document.getElementById("h").value);
+        const i = parseFloat(document.getElementById("i").value);
+        const j = parseFloat(document.getElementById("j").value);
+        const k = parseFloat(document.getElementById("k").value);
+        const l = parseFloat(document.getElementById("l").value);
 
-            // Hitung determinan utama
-            const D = a * (f * k - g * j) - b * (e * k - g * i) + c * (e * j - f * i);
-            
-            if (D === 0) {
-                document.getElementById("result").innerText = "Sistem persamaan tidak memiliki solusi unik.";
-                return;
-            }
-            
-            // Hitung determinan untuk x, y, dan z
-            const Dx = d * (f * k - g * j) - b * (h * k - g * l) + c * (h * j - f * l);
-            const Dy = a * (h * k - g * l) - d * (e * k - g * i) + c * (e * l - h * i);
-            const Dz = a * (f * l - h * j) - b * (e * l - h * i) + d * (e * j - f * i);
+        // Hitung determinan utama
+        const D =
+          a * (f * k - g * j) - b * (e * k - g * i) + c * (e * j - f * i);
 
-            // Solusi untuk x, y, dan z
-            const x = Dx / D;
-            const y = Dy / D;
-            const z = Dz / D;
+        if (D === 0) {
+          document.getElementById("result").innerText =
+            "Sistem persamaan tidak memiliki solusi unik.";
+          return;
+        }
 
-            document.getElementById("result").innerText = `Nilai: x = ${x.toFixed(2)}, y = ${y.toFixed(2)}, z = ${z.toFixed(2)}`;
+        // Hitung determinan untuk x, y, dan z
+        const Dx =
+          d * (f * k - g * j) - b * (h * k - g * l) + c * (h * j - f * l);
+        const Dy =
+          a * (h * k - g * l) - d * (e * k - g * i) + c * (e * l - h * i);
+        const Dz =
+          a * (f * l - h * j) - b * (e * l - h * i) + d * (e * j - f * i);
+
+        // Solusi untuk x, y, dan z
+        const x = Dx / D;
+        const y = Dy / D;
+        const z = Dz / D;
+
+        document.getElementById("result").innerText = `Nilai: x = ${x.toFixed(
+          2
+        )}, y = ${y.toFixed(2)}, z = ${z.toFixed(2)}`;
+      }
+    </script>
+  </body>
+</html>
+)}`;
         }
     </script>
 </body>
